@@ -44,7 +44,7 @@ app.post('/', async (req, res, next) => {
     if (urlExists) {
       res.render('index', {
         // short_url: `${req.hostname}/${urlExists.shortId}`,
-        short_url: `${req.headers.host}/${urlExists.shortId}`,
+        short_url: `${urlExists.shortId}`,
       })
       return
     }
@@ -52,7 +52,7 @@ app.post('/', async (req, res, next) => {
     const result = await shortUrl.save()
     res.render('index', {
       // short_url: `${req.hostname}/${urlExists.shortId}`,
-      short_url: `${req.headers.host}/${result.shortId}`,
+      short_url: `${result.shortId}`,
     })
   } catch (error) {
     next(error)
